@@ -3,7 +3,7 @@
 usage() { 
 echo
 echo -e "--------------------------------------------------------------------------"
-echo -e "\e[1mmatio is simple tools for searching web shell script and defaced result\e[0m"
+echo -e "\e[1mmangupa is simple tools for searching web shell script and defaced result\e[0m"
 echo -e "--------------------------------------------------------------------------"
 echo -e "\e[240mUsage \t:\e[0m\n \e[1m\e[240m $0 /path/\e[0m"
 echo -e "\e[240mExample :\n \e[1m\e[240m $0 /var/www/html/\e[0m"  
