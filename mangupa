@@ -18,25 +18,12 @@ if [ -z "${path}" ]; then
 	usage
 fi
 
-sleep 6 &
-PID=$!
-ii=1
-sp="/-\|"
-echo
-echo -en "\e[1m \e[32mPlease Wait\e[0m\t"
-while [ -d /proc/$PID ]
-do
-	printf "\b${sp:ii++%${#sp}:1}"
-done
-echo -e "\n"
-
-
 #File output
 FILE1='output/output1.txt'
 FILE2="output/$(date '+%d-%B-%Y').txt"
 
 
-#check file and remove
+# check file and remove
 if test -f "$FILE1"; then
 	rm "$FILE1"
 fi
@@ -44,32 +31,32 @@ fi
 if test -f "$FILE2"; then
 	rm "$FILE2"
 fi
- 
+echo
+echo -en "\e[1m \e[32mPlease Wait....\e[0m\t"
+
 #sleep 1 second
 sleep 2
 
 for i in $(cat list.txt); do
-	grep -rli $i ${path} >> output/output1.txt
+	grep -rwioa $i ${path} | tr "[:upper:]" "[:lower:]" >> output/output1.txt
 done
-#sort duplicate folder
 
+#sort duplicate folder
 sort -u output/output1.txt >> output/$(date '+%d-%B-%Y').txt
 
 echo
 echo -e "\e[1m \e[32mSUCCESSFULLY COMPLETED\e[0m"
 echo
-
 echo -e "\e[1m \e[41m[✔] $(sort -u output/$(date '+%d-%B-%Y').txt | wc -l) FILE DETECTED\e[0m"
 sleep 1
 echo
-echo -e "\e[1m \e[42mPlease check folder output/$(date '+%d-%B-%Y').txt\e[0m"
-echo
-sleep 1
 
 #Show output
-for i in $(sort -u output/output1.txt); do
+for i in $(cat output/$(date '+%d-%B-%Y').txt | head -n24); do
 	echo -e "\e[1m[+] $i\e[0m"
 done
+echo
+echo -e "\e[1m \e[42mPlease check folder output/$(date '+%d-%B-%Y').txt\e[0m"
 echo
 #remove output1.txt
 rm "$FILE1"
