@@ -55,6 +55,9 @@ done
 
 sort -u output/output1.txt >> output/$(date '+%d-%B-%Y').txt
 
+echo
+echo -e "\e[1m \e[32mSUCCESSFULLY COMPLETED\e[0m"
+echo
 
 echo -e "\e[1m \e[41m[✔] $(sort -u output/$(date '+%d-%B-%Y').txt | wc -l) FILE DETECTED\e[0m"
 sleep 1
@@ -68,8 +71,5 @@ for i in $(sort -u output/output1.txt); do
 	echo -e "\e[1m[+] $i\e[0m"
 done
 echo
-echo -e "\e[1m \e[32mSUCCESSFULLY COMPLETED\e[0m"
-echo
-
 #remove output1.txt
 rm "$FILE1"
