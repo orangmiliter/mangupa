@@ -38,7 +38,7 @@ echo -en "\e[1m \e[32mPlease Wait....\e[0m\t"
 sleep 2
 
 for i in $(cat list.txt); do
-	grep -rwioa $i ${path} | tr "[:upper:]" "[:lower:]" >> output/output1.txt
+	grep -rwioa $i ${path} >> output/output1.txt
 done
 
 #sort duplicate folder
